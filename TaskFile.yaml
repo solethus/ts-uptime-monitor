@@ -1,0 +1,50 @@
+version: '3'
+
+# Taken from https://encore.dev/docs/develop/cli-reference
+tasks:
+
+  # Build Tasks
+  check:
+    desc: Checks your application for compile-time errors using Encore's compiler.
+    cmds:
+      - encore check
+
+  run:
+    desc: Runs your application. [--debug] [--watch=true] [flags]
+    cmds:
+      - encore run
+
+
+  # Test
+  test:
+    desc: Run all unit tests.
+    cmds:
+      - encore test
+
+
+
+
+  test-coverage:
+    desc: Run unit tests with coverage reporting
+    cmds:
+      - encore test -coverprofile=coverage.out ./...
+      - go tool cover -html=coverage.out
+
+
+  # Deployment
+  deploy:
+    desc: Deploy to production with Encore
+    cmds:
+      - git push encore
+
+  # Other encore Specific Tasks
+  logs:
+    desc: Streams logs from your application [--env=prod] [--json]
+    cmds:
+      - encore logs
+
+
+  encore-update:
+    desc: Update encore CLI version
+    cmds:
+      - encore version update
